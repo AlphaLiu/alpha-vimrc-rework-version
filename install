@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#checkout the vim plugins and copy the bundles.vim
+
+VIMRC_BAK="vimrc_old"
+
+function update_plugins
+{
+	vim +BundleInstall! +qall
+}
+
+function install_plugins
+{
+	if [ -f $HOME/.vimrc ]; then
+		mv $HOME/.vimrc $HOME/$VIMRC_BAK
+	fi
+
+	if [ ! -f $HOME/.ackrc ]; then
+		curl -L https://raw.github.com/SaitoWu/dotfiles/master/ackrc > ~/.ackrc
+	fi
+
+	if [ ! -d $HOME/.vim/bundle/vundle ]; then 
+		git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
+	fi
+	cp -rf bundles.vim $HOME/.vim/
+
+	vim +BundleInstall +qall
+
+	cat vimrc >> $HOME/.vimrc
+}
+
+function Usage
+{
+	echo "Usage 1: $0"
+	echo "Usage 2: $0 update"
+}
+
+if [ $# -eq 0 ]; then 
+	install_plugins
+	exit
+elif [ $# -gt 1 ]; then
+	Usage
+	exit
+fi
+
+if [ $1 = "update" ]; then
+	update_plugins "$HOME/.vim/bundle"
+else
+	Usage
+fi
