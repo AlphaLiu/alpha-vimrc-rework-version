@@ -1,239 +1,242 @@
 "General {
-	"不兼容VI键盘，使用vim键盘
-		set nocompatible
+"不兼容VI键盘，使用vim键盘
+set nocompatible
+"文件类型检测与缩进
+filetype plugin indent on
+"设置文件编码检测类型及支持格式
+set fencs=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+"设置背景色
+set background=dark
+"语法补全
+syntax enable
+"语法着色
+syntax on
+"允许buffer在未保存前进行切换
+set hidden
+"历史记录数
+set history=50
+"禁止生成临时文件
+set nobackup
+set noswapfile
 
-    set background=dark         "Assume a dark background
-		"
-    if !has('gui')
-        "set term=$TERM          "Make arrow and other keys work
-    endif
-
-    syntax on                   "syntax highlighting
-
-		"set autowrite                  "automatically write a file when leaving a modified buffer
-    set shortmess+=filmnrxoOtT      "abbrev. of messages (avoids 'hit enter')
-    set viewoptions=folds,options,cursor,unix,slash "better unix / windows compatibility
-    set virtualedit=onemore         "allow for cursor beyond last character
-    "set spell                       "spell checking on
-    set hidden                      "allow buffer switching without saving
-		"历史记录数
-		set history=50
-
-		"设置编码
-    scriptencoding utf-8
-		set enc=utf-8
-
-		"设置文件编码
-		set fenc=utf-8
-
-	"设置文件编码检测类型及支持格式
-		set fencs=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
-
-		"禁止生成临时文件
-		set nobackup
-		set noswapfile
-
-    "Setting up the directories {
-        "if has('persistent_undo')
-            "set undofile                "so is persistent undo ...
-            "set undolevels=1000         "maximum number of changes that can be undone
-            "set undoreload=10000        "maximum number lines to save for undo on a buffer reload
-        "endif
-        "Could use * rather than *.*, but I prefer to leave .files unsaved
-				au BufWinLeave *.* silent! mkview  "make vim save view (state) (folds, cursor, etc)
-				au BufWinEnter *.* silent! loadview "make vim load view (state) (folds, cursor, etc)
-    "}
-"}
 "Vim UI {
-
-		"设置默认的颜色
-		colorscheme molokai 
-
-    set showmode                    "display the current mode
-
-    set cursorline                  "highlight current line
-
-    if has('cmdline_info')
-			"显示标尺
-			set ruler
-
-			set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) "a ruler on steroids
-			set showcmd                 "show partial commands in status line and
-                                    "selected characters/lines in visual mode
-    endif
-
-
-    "if has('statusline')
-        "set laststatus=2
-        "Broken down into easily includeable segments
-        "set statusline=%<%f\    "Filename
-        "set statusline+=%w%h%m%r "Options
-        "set statusline+=%{fugitive#statusline()} " Git Hotness
-        "set statusline+=\ [%{&ff}/%Y]            "filetype
-        "set statusline+=\ [%{getcwd()}]          "current dir
-        "set statusline+=%=%-14.(%l,%c%V%)\ %p%%  "Right aligned file nav info
-    "endif
-
-    set backspace=indent,eol,start  "backspace for dummies
-    set linespace=0                 "No extra spaces between rows
-    set nu                          "Line numbers on
-		"高亮显示匹配的括号
-    set showmatch
-    set incsearch                   "find as you type search
-    set hlsearch                    "highlight search terms
-    set winminheight=0              "windows can be 0 line high
-		"搜索忽略大小写
-		set ignorecase
-    set smartcase                   "case sensitive when uc present
-		"命令行下按tab键自动完成
-    set wildmenu                    "show list instead of just completing
-    set wildmode=list:longest,full  "command <Tab> completion, list matches, then longest common part, then all.
-    set whichwrap=b,s,h,l,<,>,[,]   "backspace and cursor keys wrap to
-    set scrolljump=5                "lines to scroll when cursor leaves screen
-    set scrolloff=3                 "minimum lines to keep above and below cursor
-    set foldenable                  "auto fold code
-    "set list
-    "set listchars=tab:,.,trail:.,extends:#,nbsp:. "Highlight problematic whitespace
-		
-		"Set 7 lines to the curors - when moving vertical..
-		set so=7
-		"The commandbar is 1 high
-		set cmdheight=1
-		"设置在最上面一行显示当前文件名
-		"if exists("&showtabline")
-		"set stal=2
-		"endif
-
-
+	"显示当前所处的mode
+	set showmode
+	"高亮光标所在行
+	set cursorline
+	if has('cmdline_info')
+		"显示标尺
+		set ruler
+		"标尺格式
+		set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+		"提示命令
+		set showcmd
+	endif
+	"显示文件名
+	set title
+	"退格符
+	set backspace=indent,eol,start
+	"No extra spaces between rows
+	set linespace=0
+	"行号
+	set nu
+	"高亮显示匹配的括号
+	set showmatch
+	"边输边搜
+	set incsearch
+	"高亮搜索结果
+	set hlsearch
+	"windows can be 0 line high
+	set winminheight=0
+	"搜索忽略大小写
+	set ignorecase
+	"case sensitive when uc present
+	set smartcase
+	"lines to scroll when cursor leaves screen
+	set scrolljump=5
+	"minimum lines to keep above and below cursor
+	set scrolloff=3
+	"auto fold code
+	set foldenable
+	"Set 7 lines to the curors - when moving vertical..
+	set so=7
+	"The commandbar is 1 high
+	set cmdheight=1
+	"命令行下按tab键自动完成
+  set wildmode=list:full
+  set wildmenu
 "}
-
 "Formatting {
-		"tab宽度
-		set shiftwidth=2
-		set softtabstop=2
-		set tabstop=2
-		set backspace=2
-		set smarttab
-    "set expandtab                   "tabs are spaces, not tabs
-		set lbr
-		"	Auto indent
-		set ai
-		"	Smart indet
-		set si
-		"	C-style indenting
-		set cindent
-		"	Wrap line
-		set wrap
-		"带有如下符号的单词不要被换行分割
-		set iskeyword+=_,$,@,%,#,-
-    "set matchpairs+=<:>                "match, to be used with %
-    set pastetoggle=<F12>           "pastetoggle (sane indentation on pastes)
-    "set comments=sl:/*,mb:*,elx:*/  "auto format comment blocks
-    "Remove trailing whitespaces and ^M chars
-    "autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+	"tab宽度
+	set shiftwidth=2
+	set softtabstop=2
+	set tabstop=2
+	set backspace=2
+	set smarttab
+	set lbr
+	"Auto indent
+	set ai
+	"Smart indet
+	set si
+	"C-style indenting
+	set cindent
+	"自动换行
+	set wrap
+	"带有如下符号的单词不要被换行分割
+	set iskeyword+=_,$,@,%,#,-
+	"backspace and cursor keys wrap to
+	set whichwrap=b,s,h,l,<,>,[,]
 "}
-
 "Key (re)Mappings {
-    "The default leader is '\', but many people prefer ',' as it's in a standard
-    "location
-		"Set mapleader
+		"设置mapleader
 		let mapleader = ","
 		let g:mapleader = ","
-
-    "Making it so ; works like : for commands. Saves typing and eliminates :W style typos due to lazy holding shift.
+    "让 ; 跟 : 一样可以进入命令模式
     nnoremap ; :
-
 		"在不同的窗口移动
 		map <C-j> <C-W>j
 		map <C-k> <C-W>k
 		map <C-h> <C-W>h
 		map <C-l> <C-W>l
 		map <C-i> <C-W><C-W>
-
-		"设置自动保存
-		imap <F9> <Esc>:up<cr>
-
-		"auto skip one char in insert mode, it's useful in autoclose plugin
-		imap <F8> <Esc>la
-
+		"在插入模式下跳过一个字符，对autoclose类的插件很有用
+		imap <F12> <Esc>la
 		"Tab configuration
 		map <leader>tn :tabnew .<cr>
 		map <leader>tc :tabclose<cr>
 		map <leader>tm :tabn<cr>
 		map <leader>tp :tabp<cr>
-
-		"Moving fast to front, back and 2 sides ;)
-		imap <m-4> <esc>$a
-		imap <m-0> <esc>0i
-		imap <D-4> <esc>$a
-		imap <D-0> <esc>0i
-
-		"Fast close the buffer
+		"关闭buffer
 		nmap <leader>q :bd<cr> 
-
-		"Fast saving
+		"快速保存
 		nmap <leader>w :w!<cr>
-
     "Wrapped lines goes down/up to next row, rather than next line in file.
     nnoremap j gj
     nnoremap k gk
-
-    "The following two lines conflict with moving to top and bottom of the
-    "screen
-    "If you prefer that functionality, comment them out.
-    map <S-H> gT
-    map <S-L> gt
-
-    "Yank from the cursor to the end of the line, to be consistent with C and D.
-    nnoremap Y y$
-
-    """Code folding options
-    nmap <leader>f0 :set foldlevel=0<CR>
-    nmap <leader>f1 :set foldlevel=1<CR>
-    nmap <leader>f2 :set foldlevel=2<CR>
-    nmap <leader>f3 :set foldlevel=3<CR>
-    nmap <leader>f4 :set foldlevel=4<CR>
-    nmap <leader>f5 :set foldlevel=5<CR>
-    nmap <leader>f6 :set foldlevel=6<CR>
-    nmap <leader>f7 :set foldlevel=7<CR>
-    nmap <leader>f8 :set foldlevel=8<CR>
-    nmap <leader>f9 :set foldlevel=9<CR>
-
-    "clearing highlighted search
+    "清除高亮的搜索结果
     nmap <silent> <leader>/ :nohlsearch<CR>
-
-    "Shortcuts
-    "Change Working Directory to that of the current file
-    cmap cwd lcd %:p:h
-    cmap cd. lcd %:p:h
-
-    "visual shifting (does not exit Visual mode)
-    vnoremap < <gv
-    vnoremap > >gv
-
-    "Fix home and end keybindings for screen, particularly on mac
-    "- for some reason this fixes the arrow keys too. huh.
-    map [F $
-    imap [F $
-    map [H g0
-    imap [H g0
-
     "For when you forget to sudo.. Really Write the file.
     cmap w!! w !sudo tee % >/dev/null
-
-    "Some helpers to edit mode
-    "http://vimcasts.org/e/14
-    cnoremap %% <C-R>=expand('%:h').'/'<cr>
-    map <leader>ew :e %%
-    map <leader>es :sp %%
-    map <leader>ev :vsp %%
-    map <leader>et :tabe %%
-
-    "Adjust viewports to the same size
-    map <Leader>= <C-w>=
-
     "Easier horizontal scrolling
     map zl zL
     map zh zH
+"}
+"}
+"GUI Settings{
+" GVIM- (here instead of .gvimrc)
+if has('gui_running')
+	set guioptions-=T           " remove the toolbar
+	set lines=40                " 40 lines of text instead of 24,
+	if has("gui_gtk2")
+		set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
+	else
+		set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+	endif
+	if has('gui_macvim')
+		set guifont=Monaco:h17,Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+		set transparency=5          " Make the window slightly transparent
+	endif
+else
+	if &term == 'xterm' || &term == 'screen'
+		set t_Co=256                 " Enable 256 colors to stop the CSApprox warning and make xterm vim shine
+	endif
+endif
+"}
+
+"Plugins {
+		"vim-color {
+			"默认颜色主题
+			colorscheme molokai 
+		"}
+    "NerdTree {
+			"把 F4 映射到 切换NERDTree插件
+			map <F4> :NERDTreeToggle<cr>
+			"map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+			map <leader>e :NERDTreeFind<CR>
+			nmap <leader>nt :NERDTreeFind<CR>
+
+			let NERDTreeShowBookmarks=1
+			let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+			let NERDTreeChDirMode=0
+			let NERDTreeQuitOnOpen=0
+			let NERDTreeShowHidden=0
+			let NERDTreeKeepTreeInNewTab=1
+			let NERDTreeWinPos = "left"
+    "}
+		"ctrlp {
+			let g:ctrlp_working_path_mode = 2
+			nnoremap <silent> <D-t> :CtrlP<CR>
+			nnoremap <silent> <D-r> :CtrlPMRU<CR>
+			let g:ctrlp_custom_ignore = {
+					\ 'dir':  '\.git$\|\.hg$\|\.svn$',
+					\ 'file': '\.exe$\|\.so$\|\.dll$' }
+		"}
+		"neocomplcache {
+			let g:neocomplcache_enable_at_startup = 1
+			let g:neocomplcache_enable_camel_case_completion = 1
+			let g:neocomplcache_enable_smart_case = 1
+			let g:neocomplcache_enable_underbar_completion = 1
+			let g:neocomplcache_min_syntax_length = 3
+			let g:neocomplcache_enable_auto_delimiter = 1
+
+			"AutoComplPop like behavior.
+			let g:neocomplcache_enable_auto_select = 0
+
+			"SuperTab like snippets behavior.
+			imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+			"Plugin key-mappings.
+			imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+			smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+			inoremap <expr><C-g>     neocomplcache#undo_completion()
+			inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+			inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+			inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+			inoremap <expr><C-y>  neocomplcache#close_popup()
+			inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+			"Enable omni completion.
+			autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+			autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+			autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+			autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+			autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+			"Enable heavy omni completion.
+			if !exists('g:neocomplcache_omni_patterns')
+					let g:neocomplcache_omni_patterns = {}
+			endif
+
+			let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+			let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+			let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+			"For snippet_complete marker.
+			if has('conceal')
+				set conceallevel=2 concealcursor=i
+			endif
+		"}
+		"SuperTab {
+			let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+			let g:SuperTabRetainCompletionType=2
+		"}
+		"MinibufferExpl {
+			let g:miniBufExplModSelTarget = 1
+			let g:miniBufExplUseSingleClick = 1
+			let g:miniBufExplMapWindowNavVim = 1
+			let g:miniBufExplMapWindowNavArrows = 1
+			let g:miniBufExplMapCTabSwitchBufs = 1
+		"}
+"}
+
+"Action {
+"打开文件时跳到上次退出时的位置
+autocmd BufReadPost *
+      \ if ! exists("g:leave_my_cursor_position_alone") |
+      \     if line("'\"") > 0 && line ("'\"") <= line("$") |
+      \         exe "normal g'\"" |
+      \     endif |
+      \ endif
 "}
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#checkout the vim plugins and copy the bundles.vim
+#checkout the vim plugins and copy the .vimrc
 
 VIMRC_BAK="vimrc_old"
 
@@ -19,14 +19,16 @@ function install_plugins
 		curl -L https://raw.github.com/SaitoWu/dotfiles/master/ackrc > ~/.ackrc
 	fi
 
+	cp -rf bundles.vim $HOME/.vimrc
+
 	if [ ! -d $HOME/.vim/bundle/vundle ]; then 
 		git clone https://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
 	fi
-	cp -rf bundles.vim $HOME/.vim/
 
 	vim +BundleInstall +qall
 
 	cat vimrc >> $HOME/.vimrc
+
 }
 
 function Usage
