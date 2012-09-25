@@ -33,8 +33,17 @@
 * [supertab]()
 * [minibufexpl](https://github.com/fholgado/minibufexpl.vim)
 * [vim-match]()
-* [vim-easymotion]()
+* [vim-easymotion]() 
 * [neocomplcache](https://github.com/Shougo/neocomplcache)
+* [gundo](https://github.com/sjl/gundo.vim)
+* [vim-surround](https://github.com/tpope/vim-surround)
+* [vim-unimpaired](https://github.com/tpope/vim-unimpaired)
+* [vim-repeat](https://github.com/tpope/vim-repeat)
+* [delimitMate](https://github.com/Raimondi/delimitMate)
+
+* [neocomplcache](https://github.com/Shougo/neocomplcache)
+* [The-NERD-Commenter](https://github.com/scrooloose/nerdcommenter)
+* [a.vim]()
 
 #####快捷键:
 0. ```CTRL-h```	(全模式)跳到左边的窗口。

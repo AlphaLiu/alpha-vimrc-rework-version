@@ -74,7 +74,7 @@ if !exists("g:override_bundles")
 	endif
 
 	if count(g:bundle_groups, 'misc')
-		Bundle 'spf13/vim-markdown'
+		"Bundle 'spf13/vim-markdown'
 		Bundle 'vim-scripts/sudo.vim'
 	endif
 
