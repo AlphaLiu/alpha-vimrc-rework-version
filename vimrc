@@ -65,6 +65,7 @@ set noswapfile
 	"命令行下按tab键自动完成
   set wildmode=list:full
   set wildmenu
+	set laststatus=2
 "}
 "Formatting {
 	"tab宽度
@@ -86,6 +87,8 @@ set noswapfile
 	set iskeyword+=_,$,@,%,#,-
 	"backspace and cursor keys wrap to
 	set whichwrap=b,s,h,l,<,>,[,]
+	"没有错误声
+	set noerrorbells
 "}
 "Key (re)Mappings {
 		"设置mapleader
@@ -128,12 +131,15 @@ if has('gui_running')
 	set guioptions-=T           " remove the toolbar
 	set lines=40                " 40 lines of text instead of 24,
 	if has("gui_gtk2")
-		set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
+		"set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
+		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16,DejaVu\ Sans\ Mono:h16,Menlo\ Regular\ for\ Powerline:h16,Monaco:h17 "use DejaVu Sans Mono for english on win/liunux, Monaco for mac 
 	else
-		set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+		"set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16,DejaVu\ Sans\ Mono:h16,Menlo\ Regular\ for\ Powerline:h16,Monaco:h17 "use DejaVu Sans Mono for english on win/liunux, Monaco for mac 
 	endif
 	if has('gui_macvim')
-		set guifont=Monaco:h17,Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+		"set guifont=Monaco:h17,Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
+		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16,DejaVu\ Sans\ Mono:h16,Menlo\ Regular\ for\ Powerline:h16,Monaco:h17 "use DejaVu Sans Mono for english on win/liunux, Monaco for mac 
 		set transparency=5          " Make the window slightly transparent
 	endif
 else
@@ -144,89 +150,128 @@ endif
 "}
 
 "Plugins {
-		"vim-color {
-			"默认颜色主题
-			colorscheme molokai 
+	"vim-color {
+		"默认颜色主题
+		colorscheme molokai 
+	"}
+	"NerdTree {
+		"把 F4 映射到 切换NERDTree插件
+		map <F4> :NERDTreeToggle<cr>
+		"map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
+		map <leader>e :NERDTreeFind<CR>
+		nmap <leader>nt :NERDTreeFind<CR>
+
+		let NERDTreeShowBookmarks=1
+		let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+		let NERDTreeChDirMode=0
+		let NERDTreeQuitOnOpen=0
+		let NERDTreeShowHidden=0
+		let NERDTreeKeepTreeInNewTab=1
+		let NERDTreeWinPos = "left"
+		let NERDTreeMapChangeRoot="cc"
+		autocmd vimenter * if !argc() | NERDTree | endif
+	"}
+	"ctrlp {
+		let g:ctrlp_working_path_mode = 2
+		nnoremap <silent> <D-t> :CtrlP<CR>
+		nnoremap <silent> <D-r> :CtrlPMRU<CR>
+		let g:ctrlp_custom_ignore = {
+				\ 'dir':  '\.git$\|\.hg$\|\.svn$',
+				\ 'file': '\.exe$\|\.so$\|\.dll$' }
+	"}
+	"neocomplcache {
+		let g:neocomplcache_enable_at_startup = 1
+		let g:neocomplcache_enable_camel_case_completion = 1
+		let g:neocomplcache_enable_smart_case = 1
+		let g:neocomplcache_enable_underbar_completion = 1
+		let g:neocomplcache_min_syntax_length = 3
+		let g:neocomplcache_enable_auto_delimiter = 1
+
+		"AutoComplPop like behavior.
+		let g:neocomplcache_enable_auto_select = 0
+
+		"SuperTab like snippets behavior.
+		imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+
+		"Plugin key-mappings.
+		imap <C-k>     <Plug>(neocomplcache_snippets_expand)
+		smap <C-k>     <Plug>(neocomplcache_snippets_expand)
+		inoremap <expr><C-g>     neocomplcache#undo_completion()
+		inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+		inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+		inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+		inoremap <expr><C-y>  neocomplcache#close_popup()
+		inoremap <expr><C-e>  neocomplcache#cancel_popup()
+
+		"Enable omni completion.
+		autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+		autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+		autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+		autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+		autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+		"Enable heavy omni completion.
+		if !exists('g:neocomplcache_omni_patterns')
+				let g:neocomplcache_omni_patterns = {}
+		endif
+
+		let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+		let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
+		let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+
+		"For snippet_complete marker.
+		if has('conceal')
+			set conceallevel=2 concealcursor=i
+		endif
+	"}
+	"SuperTab {
+		let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
+		let g:SuperTabRetainCompletionType=2
+	"}
+	"MinibufferExpl {
+		let g:miniBufExplModSelTarget = 1
+		let g:miniBufExplUseSingleClick = 1
+		let g:miniBufExplMapWindowNavVim = 1
+		let g:miniBufExplMapWindowNavArrows = 1
+		let g:miniBufExplMapCTabSwitchBufs = 1
+		"let g:miniBufExplorerMoreThanOne = 1
+	"}
+	"Gundo {
+		nnoremap <F5> :GundoToggle<CR>
+		let g:gundo_width = 35
+		let g:gundo_preview_height = 10
 		"}
-    "NerdTree {
-			"把 F4 映射到 切换NERDTree插件
-			map <F4> :NERDTreeToggle<cr>
-			"map <C-e> :NERDTreeToggle<CR>:NERDTreeMirror<CR>
-			map <leader>e :NERDTreeFind<CR>
-			nmap <leader>nt :NERDTreeFind<CR>
-
-			let NERDTreeShowBookmarks=1
-			let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-			let NERDTreeChDirMode=0
-			let NERDTreeQuitOnOpen=0
-			let NERDTreeShowHidden=0
-			let NERDTreeKeepTreeInNewTab=1
-			let NERDTreeWinPos = "left"
-    "}
-		"ctrlp {
-			let g:ctrlp_working_path_mode = 2
-			nnoremap <silent> <D-t> :CtrlP<CR>
-			nnoremap <silent> <D-r> :CtrlPMRU<CR>
-			let g:ctrlp_custom_ignore = {
-					\ 'dir':  '\.git$\|\.hg$\|\.svn$',
-					\ 'file': '\.exe$\|\.so$\|\.dll$' }
+		"unimpaired.vim {
+			"Buble single line
+			nmap <S-Up> [e
+			nmap <S-Down> ]e
+			"Buble mulitle lines
+			vmap <S-Up> [egv
+			vmap <S-Down> ]egv
 		"}
-		"neocomplcache {
-			let g:neocomplcache_enable_at_startup = 1
-			let g:neocomplcache_enable_camel_case_completion = 1
-			let g:neocomplcache_enable_smart_case = 1
-			let g:neocomplcache_enable_underbar_completion = 1
-			let g:neocomplcache_min_syntax_length = 3
-			let g:neocomplcache_enable_auto_delimiter = 1
-
-			"AutoComplPop like behavior.
-			let g:neocomplcache_enable_auto_select = 0
-
-			"SuperTab like snippets behavior.
-			imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
-			"Plugin key-mappings.
-			imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-			smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-			inoremap <expr><C-g>     neocomplcache#undo_completion()
-			inoremap <expr><C-l>     neocomplcache#complete_common_string()
-
-			inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-			inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-			inoremap <expr><C-y>  neocomplcache#close_popup()
-			inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-			"Enable omni completion.
-			autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-			autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-			autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-			autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-			autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-
-			"Enable heavy omni completion.
-			if !exists('g:neocomplcache_omni_patterns')
-					let g:neocomplcache_omni_patterns = {}
-			endif
-
-			let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-			let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-			let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
-
-			"For snippet_complete marker.
-			if has('conceal')
-				set conceallevel=2 concealcursor=i
-			endif
+		"a.vim {
+			"映射a.vim 快捷键 
+			map <leader>a :A<cr>
 		"}
-		"SuperTab {
-			let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-			let g:SuperTabRetainCompletionType=2
+		"vim-indent-guides {
+			"note: <leader>ig to toggle this plugin
+			let g:indent_guides_auto_colors = 0
+			autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd	guibg=red	 ctermbg=3
+			autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=green ctermbg=4
 		"}
-		"MinibufferExpl {
-			let g:miniBufExplModSelTarget = 1
-			let g:miniBufExplUseSingleClick = 1
-			let g:miniBufExplMapWindowNavVim = 1
-			let g:miniBufExplMapWindowNavArrows = 1
-			let g:miniBufExplMapCTabSwitchBufs = 1
+		"ruby-conque {
+			nmap <silent> <Leader>rcrr :call RunRubyCurrentFileConque()<CR>
+			nmap <silent> <Leader>rcss :call RunRspecCurrentFileConque()<CR>
+			nmap <silent> <Leader>rcll :call RunRspecCurrentLineConque()<CR>
+			nmap <silent> <Leader>rccc :call RunCucumberCurrentFileConque()<CR>
+			nmap <silent> <Leader>rccl :call RunCucumberCurrentLineConque()<CR>
+			nmap <silent> <Leader>rcRR :call RunRakeConque()<CR>
+			nmap <silent> <Leader>rcrl :call RunLastConqueCommand()<CR>
+		"}
+		"vim-powerline {
+			let Powerline_symbols = 'compatible'
+			let g:Powerline_symbols = 'fancy'
 		"}
 "}
 
