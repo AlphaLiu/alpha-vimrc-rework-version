@@ -190,9 +190,6 @@ endif
 		"AutoComplPop like behavior.
 		let g:neocomplcache_enable_auto_select = 0
 
-		"SuperTab like snippets behavior.
-		imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-
 		"Plugin key-mappings.
 		imap <C-k>     <Plug>(neocomplcache_snippets_expand)
 		smap <C-k>     <Plug>(neocomplcache_snippets_expand)
@@ -225,10 +222,6 @@ endif
 			set conceallevel=2 concealcursor=i
 		endif
 	"}
-	"SuperTab {
-		let g:SuperTabDefaultCompletionType = '<C-X><C-U>'
-		let g:SuperTabRetainCompletionType=2
-	"}
 	"MinibufferExpl {
 		let g:miniBufExplModSelTarget = 1
 		let g:miniBufExplUseSingleClick = 1
@@ -253,6 +246,16 @@ endif
 		"a.vim {
 			"映射a.vim 快捷键 
 			map <leader>a :A<cr>
+		"}
+		"tagbar {
+			if executable('ctags')
+				nmap <F6> :TagbarToggle<CR>	
+				let g:tagbar_width = 30
+        let g:tagbar_autoclose = 1
+        let g:tagbar_autofocus = 1
+        let g:tagbar_compact = 1
+        let g:tagbar_iconchars = ['▾', '▸']
+			endif
 		"}
 		"vim-indent-guides {
 			"note: <leader>ig to toggle this plugin

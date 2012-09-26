@@ -51,6 +51,9 @@ if !exists("g:override_bundles")
 		endif
 		Bundle 'Lokaltog/vim-powerline'
 		Bundle 'tpope/vim-fugitive'
+		if executable('ctags')
+			Bundle 'majutsushi/tagbar'
+		endif
 	endif
 
 	if count(g:bundle_groups, 'ruby')
