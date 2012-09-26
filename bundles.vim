@@ -26,7 +26,6 @@ if !exists("g:override_bundles")
 		Bundle 'vim-scripts/ScrollColors'
 		Bundle 'scrooloose/nerdtree'
 		Bundle 'kien/ctrlp.vim'
-		Bundle 'ervandew/supertab'
 		Bundle 'fholgado/minibufexpl.vim'
 		Bundle 'edsono/vim-matchit.git'
 		Bundle 'Lokaltog/vim-easymotion'
@@ -35,6 +34,7 @@ if !exists("g:override_bundles")
 		Bundle 'tpope/vim-unimpaired'
 		Bundle 'tpope/vim-repeat'
 		Bundle 'Raimondi/delimitMate'
+		Bundle 'vim-scripts/cmdline-completion'
 	endif
 
 	if count(g:bundle_groups, 'programming')
@@ -74,7 +74,6 @@ if !exists("g:override_bundles")
 	endif
 
 	if count(g:bundle_groups, 'misc')
-		"Bundle 'spf13/vim-markdown'
 		Bundle 'vim-scripts/sudo.vim'
 	endif
 
