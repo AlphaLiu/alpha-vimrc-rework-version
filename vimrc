@@ -231,7 +231,7 @@ endif
 		"let g:miniBufExplorerMoreThanOne = 1
 	"}
 	"Gundo {
-		nnoremap <F5> :GundoToggle<CR>
+		nnoremap <F6> :GundoToggle<CR>
 		let g:gundo_width = 35
 		let g:gundo_preview_height = 10
 		"}
@@ -249,7 +249,7 @@ endif
 		"}
 		"tagbar {
 			if executable('ctags')
-				nmap <F6> :TagbarToggle<CR>	
+				nmap <F5> :TagbarToggle<CR>	
 				let g:tagbar_width = 30
         let g:tagbar_autoclose = 1
         let g:tagbar_autofocus = 1
