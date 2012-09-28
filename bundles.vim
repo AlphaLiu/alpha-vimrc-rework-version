@@ -73,12 +73,13 @@ if !exists("g:override_bundles")
 
 	if count(g:bundle_groups, 'html')
 		Bundle 'HTML-AutoCloseTag'
-		Bundle 'ChrisYip/Better-CSS-Syntax-for-Vim'
+		Bundle 'vim-scripts/css3-mod'
 		Bundle 'mattn/zencoding-vim'
 	endif
 
 	if count(g:bundle_groups, 'misc')
 		Bundle 'vim-scripts/sudo.vim'
+		Bundle 'tpope/vim-markdown'
 	endif
 
 endif
