@@ -12,7 +12,7 @@ task :deploy  do
 
 
 	unless File.exist?("#{ackrc_file}")
-		system "curl -L https://raw.github.com/SaitoWu/dotfiles/master/ackrc > ~/.ackrc"
+		system "curl -L https://raw.github.com/SaitoWu/dotfiles/master/ack/ackrc.symlink > ~/.ackrc"
 	end
 
 	FileUtils.cp "bundles.vim", "#{vimrc_file}"

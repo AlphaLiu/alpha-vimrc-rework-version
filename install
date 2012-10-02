@@ -16,7 +16,7 @@ function install_plugins
 	fi
 
 	if [ ! -f $HOME/.ackrc ]; then
-		curl -L https://raw.github.com/SaitoWu/dotfiles/master/ackrc > ~/.ackrc
+		curl -L https://raw.github.com/SaitoWu/dotfiles/master/ack/ackrc.symlink > ~/.ackrc
 	fi
 
 	cp -rf bundles.vim $HOME/.vimrc
