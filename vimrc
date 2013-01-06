@@ -95,7 +95,7 @@ set noswapfile
 		let mapleader = ","
 		let g:mapleader = ","
     "让 ; 跟 : 一样可以进入命令模式
-    nnoremap ; :
+    "nnoremap ; :
 		"在不同的窗口移动
 		map <C-j> <C-W>j
 		map <C-k> <C-W>k
@@ -172,7 +172,7 @@ endif
 		autocmd vimenter * if !argc() | NERDTree | endif
 	"}
 	"ctrlp {
-		let g:ctrlp_working_path_mode = 2
+		"let g:ctrlp_working_path_mode = 2
 		nnoremap <silent> <D-t> :CtrlP<CR>
 		nnoremap <silent> <D-r> :CtrlPMRU<CR>
 		let g:ctrlp_custom_ignore = {

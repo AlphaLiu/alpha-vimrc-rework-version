@@ -60,7 +60,7 @@ if !exists("g:override_bundles")
 	if count(g:bundle_groups, 'ruby')
 		Bundle 'vim-ruby/vim-ruby'
 		Bundle 'tpope/vim-rails'
-		Bundle 'bbommarito/vim-slim'
+		Bundle 'slim-template/vim-slim'
 		Bundle 'skwp/vim-ruby-conque'
 		Bundle 'tpope/vim-endwise'
 	endif
