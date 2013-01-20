@@ -11,6 +11,7 @@
 0. 运行```git clone git://github.com/AlphaLiu/alpha-vimrc-rework-version.github```。
 0. 运行```cd alpha-vimrc-rework-version```
 0. 运行```./install```，若系统已经安装了ruby语言，可以使用```rake deploy```。
+0. vimrc默认使用 Source Code Pro 字体，请把 fonts_for_powerline/sourcecodepro_powerline.zip 解压并安装该字体, 以得到最好的显示效果。
 
 #####插件:
 * [vundle]()

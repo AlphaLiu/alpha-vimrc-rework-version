@@ -131,15 +131,12 @@ if has('gui_running')
 	set guioptions-=T           " remove the toolbar
 	set lines=40                " 40 lines of text instead of 24,
 	if has("gui_gtk2")
-		"set guifont=Andale\ Mono\ Regular\ 16,Menlo\ Regular\ 15,Consolas\ Regular\ 16,Courier\ New\ Regular\ 18
-		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16,DejaVu\ Sans\ Mono:h16,Menlo\ Regular\ for\ Powerline:h16,Monaco:h17 "use DejaVu Sans Mono for english on win/liunux, Monaco for mac 
+		set guifont=Source\ Code\ Pro\ for\ Powerline:h16
 	else
-		"set guifont=Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
-		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16,DejaVu\ Sans\ Mono:h16,Menlo\ Regular\ for\ Powerline:h16,Monaco:h17 "use DejaVu Sans Mono for english on win/liunux, Monaco for mac 
+		set guifont=Source\ Code\ Pro\ for\ Powerline:h16
 	endif
 	if has('gui_macvim')
-		"set guifont=Monaco:h17,Andale\ Mono\ Regular:h16,Menlo\ Regular:h15,Consolas\ Regular:h16,Courier\ New\ Regular:h18
-		set guifont=DejaVu\ Sans\ Mono\ for\ Powerline:h16,DejaVu\ Sans\ Mono:h16,Menlo\ Regular\ for\ Powerline:h16,Monaco:h17 "use DejaVu Sans Mono for english on win/liunux, Monaco for mac 
+		set guifont=Source\ Code\ Pro\ for\ Powerline:h16
 		set transparency=5          " Make the window slightly transparent
 	endif
 else
