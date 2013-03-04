@@ -19,18 +19,21 @@ __注意事项__:
 如果你需要旧版本的 vim-powerline， 请到``` ~/.vim/bundle/vim-powerline/```， 使用以下命令 checkout ```develop``` 分支:
 ```git checkout develop```。
 0. ack.vim需要系统安装有 ```ack``` 软件，请参考 [http://betterthangrep.com/install/](http://betterthangrep.com/install/) 进行安装。
-0. tagbar需要系统安装有```Exuberant ctags```或者```GNU GLOBAL```， 请参考[Exuberant Ctags](http://ctags.sourceforge.net/) 或者 [GNU GLOBAL](http://www.gnu.org/software/global/)。
+0. tagbar需要系统安装有```Exuberant ctags```，请参考[Exuberant Ctags](http://ctags.sourceforge.net/)。
 
 #####插件:
 * [vundle](https://github.com/gmarik/vundle)
     
 	vim 插件管理工具。
+
 * [vim-addon-mw-utils](https://github.com/MarcWeber/vim-addon-mw-utils)
 	
 	函数库，一些插件可能会依赖这个函数库。
+
 * [tlib_vim](https://github.com/tomtom/tlib_vim)
 
 	函数库，一些插件可能会依赖这个函数库。
+
 * [ack.vim](https://github.com/mileszs/ack.vim)
 * [vim-colors-solarized](https://github.com/altercation/vim-colors-solarized)
 * [vim-colors](https://github.com/spf13/vim-colors)
