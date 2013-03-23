@@ -35,6 +35,7 @@ if !exists("g:override_bundles")
 		Bundle 'tpope/vim-repeat'
 		Bundle 'Raimondi/delimitMate'
 		Bundle 'vim-scripts/cmdline-completion'
+		Bundle 'yueyoum/vim-linemovement' 
 	endif
 
 	if count(g:bundle_groups, 'programming')
