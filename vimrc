@@ -102,6 +102,8 @@ set noswapfile
 		map <C-h> <C-W>h
 		map <C-l> <C-W>l
 		map <C-i> <C-W><C-W>
+		"在插入模式下用jj映射为ESC键
+		imap jj <Esc> 
 		"在插入模式下跳过一个字符，对autoclose类的插件很有用
 		imap <F12> <Esc>la
 		"Tab configuration
