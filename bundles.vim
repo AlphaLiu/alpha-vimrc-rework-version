@@ -43,7 +43,7 @@ if !exists("g:override_bundles")
 		Bundle 'scrooloose/nerdcommenter'
 		Bundle 'AlphaLiu/a.vim'
 		Bundle 'nathanaelkane/vim-indent-guides'
-		Bundle 'rson/vim-conque'
+		Bundle 'austenito/vim-conque'
 		Bundle 'garbas/vim-snipmate'
 		Bundle 'spf13/snipmate-snippets'
 		" Source support_function.vim to support snipmate-snippets.
